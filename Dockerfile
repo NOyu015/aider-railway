@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /workspace
 RUN git init -q . \
-    && printf 'model: groq/qwen/qwen3.8-27b\n' > .aider.conf.yml \
+    && printf 'model: gemini/gemini-3.8-flash\n' > .aider.conf.yml \
     && printf '.aider*\n' > .gitignore \
     && git add -A \
     && git -c user.email=aider@local -c user.name=aider commit -qm init 2>/dev/null || true
