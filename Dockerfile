@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /workspace
 RUN git init -q . \
+    && git config --global user.email "aider@local" \
+    && git config --global user.name "aider" \
     && printf 'model: gemini/gemini-3.8-flash\n' > .aider.conf.yml \
     && printf '.aider*\n' > .gitignore \
     && git add -A \

@@ -27,7 +27,7 @@ ttyd -p "$TTYD_PORT" -i 127.0.0.1 -t fontSize=20 \
     GEMINI_API_KEY="$GEMINI_API_KEY" \
     OPENROUTER_API_KEY="$OPENROUTER_API_KEY" \
     GROQ_API_KEY="$GROQ_API_KEY" \
-  bash -c 'cd /workspace && aider; exec bash' &
+  bash -c 'cd /workspace && aider --no-show-release-notes; exec bash' &
 TTYD_PID=$!
 
 # 4. 前台跑 nginx（容器主进程）
