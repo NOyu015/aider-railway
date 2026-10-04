@@ -21,8 +21,8 @@ sed -e "s/\${PORT}/$PORT/g" -e "s/\${TTYD_PORT}/$TTYD_PORT/g" \
 rm -f /etc/nginx/sites-enabled/default
 nginx -t -q
 
-# 3. 启动 ttyd（只绑本机，无自身认证，认证交给 nginx；打开终端直接进 aider）
-ttyd -p "$TTYD_PORT" -i 127.0.0.1 \
+# 3. 启动 ttyd（只绑本机，无自身认证，认证交给 nginx；打开终端直接进 aider；字体调大适配手机）
+ttyd -p "$TTYD_PORT" -i 127.0.0.1 -t fontSize=20 \
   env NO_PROXY=localhost,127.0.0.1 \
     GEMINI_API_KEY="$GEMINI_API_KEY" \
     OPENROUTER_API_KEY="$OPENROUTER_API_KEY" \
