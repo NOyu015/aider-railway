@@ -9,7 +9,7 @@
 FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      git curl ca-certificates \
+      git curl ca-certificates nginx apache2-utils \
     && rm -rf /var/lib/apt/lists/* \
     && pip install --no-cache-dir aider-chat \
     && curl -fsSL -o /usr/local/bin/ttyd \
@@ -25,6 +25,8 @@ RUN git init -q . \
     && git -c user.email=aider@local -c user.name=aider commit -qm init 2>/dev/null || true
 
 COPY start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
+COPY nginx-aider.conf.template /usr/local/share/aider/nginx-aider.conf.template
+RUN chmod +x /usr/local/bin/start.sh \
+    && rm -f /etc/nginx/sites-enabled/default
 
 CMD ["/usr/local/bin/start.sh"]
